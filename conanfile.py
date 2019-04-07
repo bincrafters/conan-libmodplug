@@ -54,6 +54,7 @@ class LibmodplugConan(ConanFile):
 
     def package_info(self):
         self.cpp_info.libs = ["modplug"]
+        self.cpp_info.bindirs = ["lib"]
         self.cpp_info.includedirs.append(os.path.join("include", "libmodplug"))
         if not self.options.shared:
             self.cpp_info.defines.append("MODPLUG_STATIC")
