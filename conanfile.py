@@ -8,7 +8,7 @@ class LibmodplugConan(ConanFile):
     name = "libmodplug"
     version = "0.8.9.0"
     description = "libmodplug - the library which was part of the Modplug-xmms project"
-    topics = ("conan", "libmodplug", "audui", "multimedia", "sound", "music", "mod", "mod music",
+    topics = ("conan", "libmodplug", "auduo", "multimedia", "sound", "music", "mod", "mod music",
               "tracket music")
     url = "https://github.com/bincrafters/conan-libmodplug"
     homepage = "http://modplug-xmms.sourceforge.net/"
