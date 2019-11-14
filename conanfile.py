@@ -10,7 +10,6 @@ class LibmodplugConan(ConanFile):
               "tracket music")
     url = "https://github.com/bincrafters/conan-libmodplug"
     homepage = "http://modplug-xmms.sourceforge.net/"
-    author = "Bincrafters <bincrafters@gmail.com>"
     license = "Unlicense"  # public domain
     exports = ["LICENSE.md"]
     exports_sources = ["CMakeLists.txt"]
