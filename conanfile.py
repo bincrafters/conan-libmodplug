@@ -4,14 +4,12 @@ import os
 
 class LibmodplugConan(ConanFile):
     name = "libmodplug"
-    version = "0.8.9.0"
     description = "libmodplug - the library which was part of the Modplug-xmms project"
     topics = ("conan", "libmodplug", "auduo", "multimedia", "sound", "music", "mod", "mod music",
               "tracket music")
     url = "https://github.com/bincrafters/conan-libmodplug"
-    homepage = "http://modplug-xmms.sourceforge.net/"
+    homepage = "http://modplug-xmms.sourceforge.net"
     license = "Unlicense"  # public domain
-    exports = ["LICENSE.md"]
     exports_sources = ["CMakeLists.txt"]
     generators = "cmake"
 
@@ -27,13 +25,10 @@ class LibmodplugConan(ConanFile):
             del self.options.fPIC
 
     def source(self):
-        source_url = "https://netcologne.dl.sourceforge.net/project/modplug-xmms/{n}/{v}/libmodplug-{v}.tar.gz".format(v=self.version, n=self.name)
-        tools.get(source_url, sha256="457ca5a6c179656d66c01505c0d95fafaead4329b9dbaa0f997d00a3508ad9de")
-        os.rename(self.name + "-" + self.version, self._source_subfolder)
-
-        # CMakeLists.txt is missing from distribution
-        tools.download("https://raw.githubusercontent.com/Konstanty/libmodplug/master/CMakeLists.txt",
-                       os.path.join(self._source_subfolder, "CMakeLists.txt"))
+        commit = os.path.splitext(os.path.basename(self.conan_data["sources"][self.version]["url"]))[0]
+        tools.get(**self.conan_data["sources"][self.version])
+        extracted_dir = self.name + "-" + commit
+        os.rename(extracted_dir, self._source_subfolder)
 
     def _configure_cmake(self):
         cmake = CMake(self)
