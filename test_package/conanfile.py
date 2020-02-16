@@ -13,6 +13,9 @@ class TestPackageConan(ConanFile):
 
     def test(self):
         if not tools.cross_building(self.settings):
+            # Download a public domain xm file; https://modarchive.org/module.php?178293
+            tools.download("https://api.modarchive.org/downloads.php?moduleid=178293#burbs.xm", filename="burbs.xm")
+            tools.check_sha256("burbs.xm", "ced080401a2635cddc6d13b9095efa217f260ce7b3a482a29b454f72317b0c4d")
+
             bin_path = os.path.join("bin", "test_package")
-            mod_path = os.path.join(self.source_folder, "burbs.xm")
-            self.run("%s %s" % (bin_path, mod_path), run_environment=True)
+            self.run("%s %s" % (bin_path, "burbs.xm"), run_environment=True)
